@@ -1,0 +1,58 @@
+#1
+--comments: This prints any line beginning with the letter Z.
+
+ grep -i '^Z' cities.txt
+
+#2
+--comments: This prints any line that ends with the keywords "gan"
+ grep -i 'gan$' cities.txt
+
+#3
+-- comments: This prints any line that starts with the keywords: A, D, or E
+ grep -c '^[ADE]' cities.txt
+
+
+#4
+-- comments: This prints any word that begins with (any letter but with
+	     the letter A as second letter and Z as the third letter.
+	     In grep, you literally type out the word but using symbols
+	     for which word you're searching for.
+ grep -c '\<.ar' cities.txt
+
+#5
+-- comments: This searches the beginning of each line and checks to make sure
+	     and prints any line that does not begin with the letter C
+ grep -c '^[^C]' cities.txt
+
+#6
+-- comments: This uses extended grep, ignores case, and prints out any 
+	     characters, first including a hyphen, any letter a-z, with any
+	     number 0-9 as well, and multiply this 14 times 
+ grep -E -i '[-0-9a-z]{14}' cities.txt
+
+#7
+-- comments: This prints out any line that begins with the letter B
+ grep -c '^B' cities.txt
+
+#8
+-- comments: This first checks and lists only the d that repeats using the -o
+	    flag and then pipes it to the word count using the -l to count
+	    the lines.
+ grep -o '[d]' cities.txt | wc -l
+
+#9
+-- comments: This checks to see i any letter at the end, using extended grep,
+             remembers the letter at the end of the word then checks a 
+             preceding letter to see if it matches.
+
+ grep -E '(.)\1\>' cities.txt
+
+#10
+-- comments : Using extended grep, ignoring case and matching the entire
+	      word case, There's no arrays in grep so you have to repeat
+	      the usage of the remember symbol() the dot for any word between
+	      the two and then check to see if the second remember, matches with
+	      the \2, and if the first remembrance matches with the \1
+              thus a pallendrome.
+
+ grep -E -wi '(.)(.).\2\1' cities.txt
